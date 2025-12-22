@@ -9,7 +9,7 @@ from mandates import CartMandate
 load_dotenv()
 
 class MerchantAgent:
-    def __init__(self, name="CoffeeRoasters"):
+    def __init__(self, name="ECOMSURFER"):
         self.name = name
         self.client = OpenAI(
             api_key=os.environ.get("OPENROUTER_API_KEY"),
