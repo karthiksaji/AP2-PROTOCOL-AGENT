@@ -30,12 +30,14 @@ MANDATORY RULES:
 3. If variants exist (RAM, storage, color, connectivity),
    return MULTIPLE VARIANTS of the SAME PRODUCT with different prices.
 4. If the exact product does NOT exist, return an EMPTY products array.
-5. Prices must be realistic Indian market prices (INR).
-6. Respond with VALID JSON ONLY. No explanations.
+5. Prices must be realistic Indian market prices (INR). Use consistent, standard MSRP values to ensure the same price is returned for the same product every time.
+6. If the user specifies a budget or spending limit, RETURN ONLY products that fit within that limit.
+7. DO NOT fluctuate prices. Be deterministic.
+8. Respond with VALID JSON ONLY. No explanations.
 
 TASK:
-Interpret the user query as an exact product lookup.
-Return UP TO 3 realistic variants of the SAME product.
+Interpret the user query as an exact product lookup. Determine if a spending limit is mentioned.
+Return UP TO 3 realistic variants of the SAME product, ordered by price in ASCENDING order.
 
 OUTPUT FORMAT:
 {
@@ -64,6 +66,8 @@ OUTPUT FORMAT:
                 ],
                 model="meta-llama/llama-3.3-70b-instruct",
                 response_format={"type": "json_object"},
+                temperature=0,
+                seed=42,
             )
             
             response_content = chat_completion.choices[0].message.content
