@@ -9,7 +9,7 @@ The AP2 Commerce Demo backend is a Python-based multi-agent system that orchestr
 - **Python 3.8+**
 - **FastAPI** - Modern web framework
 - **Uvicorn** - ASGI server
-- **Groq** - LLM API client (llama-3.3-70b-versatile)
+- **OpenRouter** - LLM API provider (meta-llama/llama-3.3-70b-instruct)
 - **Pydantic** - Data validation
 - **python-dotenv** - Environment management
 
@@ -118,11 +118,14 @@ self.logs = []                     # Agent logs
 
 #### `search_product(query: str) -> list[dict]`
 
-Searches for products matching the query using Groq LLM.
+Searches for products matching the query using OpenRouter LLM.
 
 **LLM Integration:**
 ```python
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+client = OpenAI(
+    api_key=os.getenv("OPENROUTER_API_KEY"),
+    base_url="https://openrouter.ai/api/v1"
+)
 model = "llama-3.3-70b-versatile"
 ```
 
@@ -410,7 +413,7 @@ app.add_middleware(
 2. ShoppingAgent.process_intent()
    ↓
 3. MerchantAgent.search_product("iphone 16")
-   ↓ (Groq LLM)
+   ↓ (OpenRouter LLM)
 4. Returns 3 iPhone variants
    ↓
 5. ShoppingAgent selects best match
@@ -451,7 +454,7 @@ Logs are aggregated and returned to the frontend for visualization.
 
 ```bash
 # .env
-GROQ_API_KEY=gsk_...
+OPENROUTER_API_KEY=sk-or-v1-...
 ```
 
 ### Loading Environment
@@ -461,7 +464,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-api_key = os.getenv("GROQ_API_KEY")
+api_key = os.getenv("OPENROUTER_API_KEY")
 ```
 
 ## Error Handling
@@ -560,7 +563,7 @@ print(response.json())
 
 ## Performance Considerations
 
-1. **LLM Latency:** Groq API calls take 1-3 seconds
+1. **LLM Latency:** API calls typically take 1-3 seconds
 2. **Caching:** Consider caching popular product queries
 3. **Rate Limiting:** Implement for production
 4. **Connection Pooling:** For database connections (if added)

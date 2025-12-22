@@ -37,7 +37,7 @@
 #### Backend
 - **Python 3.8+**
 - **FastAPI** for REST API
-- **Groq LLM** (llama-3.3-70b-versatile) for intelligent product search
+- **OpenRouter LLM** (meta-llama/llama-3.3-70b-instruct) for intelligent product search
 - **Uvicorn** ASGI server
 
 ### Project Structure
@@ -83,7 +83,7 @@ graph TB
     ShoppingAgent --> CredentialsProvider[Credentials Provider]
     ShoppingAgent --> PaymentProcessor[Payment Processor]
     
-    MerchantAgent --> LLM[Groq LLM]
+    MerchantAgent --> LLM[OpenRouter LLM]
     MerchantAgent --> CartMandate[Cart Mandate]
     
     CredentialsProvider --> PaymentToken[Payment Token]
@@ -102,7 +102,7 @@ graph TB
 # Backend Setup
 cd ap2_demo
 pip install -r requirements.txt
-cp .env.example .env  # Add your GROQ_API_KEY
+cp .env.example .env  # Add your OPENROUTER_API_KEY
 python server.py
 
 # Frontend Setup (new terminal)

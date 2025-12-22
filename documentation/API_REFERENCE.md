@@ -509,7 +509,7 @@ def process_payment(payment_method: str):
 For API issues or questions:
 1. Check the [Backend Documentation](./BACKEND.md)
 2. Review agent logs for debugging
-3. Ensure Groq API key is configured correctly
+3. Ensure OpenRouter API key is configured correctly
 
 ---
 

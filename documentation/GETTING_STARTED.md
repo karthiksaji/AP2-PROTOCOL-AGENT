@@ -13,8 +13,8 @@ This guide will help you set up and run the AP2 Commerce Demo on your local mach
 
 ### API Keys
 
-- **Groq API Key** - Required for LLM-powered product search
-  - Sign up at [console.groq.com](https://console.groq.com/)
+- **OpenRouter API Key** - Required for LLM-powered product search
+  - Sign up at [pure.openrouter.ai](https://openrouter.ai/)
   - Generate an API key from your dashboard
 
 ## Installation
@@ -57,7 +57,7 @@ pip install -r requirements.txt
 **Required packages:**
 - `fastapi` - Web framework
 - `uvicorn` - ASGI server
-- `groq` - Groq LLM client
+- `openai` - OpenAI SDK (used for OpenRouter)
 - `python-dotenv` - Environment variable management
 - `pydantic` - Data validation
 
@@ -67,10 +67,10 @@ Create a `.env` file in the `ap2_demo` directory:
 
 ```bash
 # .env
-GROQ_API_KEY=your_groq_api_key_here
+OPENROUTER_API_KEY=your_openrouter_api_key_here
 ```
 
-Replace `your_groq_api_key_here` with your actual Groq API key.
+Replace `your_openrouter_api_key_here` with your actual OpenRouter API key.
 
 #### 2.5 Verify Backend Installation
 
@@ -205,8 +205,8 @@ You should receive a JSON response with product details and agent logs.
   pip install -r requirements.txt
   ```
 
-**Issue: `groq.APIError: Invalid API key`**
-- **Solution:** Check your `.env` file and ensure `GROQ_API_KEY` is set correctly
+**Issue: `AuthenticationError: Invalid API key`**
+- **Solution:** Check your `.env` file and ensure `OPENROUTER_API_KEY` is set correctly
 
 **Issue: `Port 8000 already in use`**
 - **Solution:** Kill the process using port 8000 or change the port in `server.py`

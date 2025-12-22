@@ -8,7 +8,7 @@ Before setting up this project, ensure you have:
 
 - **Python 3.8 or higher** installed ([Download Python](https://www.python.org/downloads/))
 - **pip** (Python package manager, comes with Python)
-- **Groq API Key** ([Get free API key](https://console.groq.com/keys))
+- **OpenRouter API Key** ([Get free API key](https://openrouter.ai/keys))
 
 ## Installation Steps
 
@@ -37,13 +37,13 @@ pip install -r requirements.txt
 This will install:
 - `fastapi` - Modern web framework
 - `uvicorn` - ASGI server for running FastAPI
-- `groq` - LLM API client for product search
+- `openai` - LLM API client for product search
 - `python-dotenv` - Environment variable management
 - `pydantic` - Data validation
 
 **Verify installation:**
 ```bash
-pip list | findstr "fastapi uvicorn groq python-dotenv"
+pip list | findstr "fastapi uvicorn openai python-dotenv"
 ```
 
 ### 3. Configure Environment Variables
@@ -58,11 +58,11 @@ copy .env.example .env
 **Option B: Create manually**
 Create a file named `.env` with the following content:
 ```
-GROQ_API_KEY=your_actual_groq_api_key_here
+OPENROUTER_API_KEY=your_actual_openrouter_api_key_here
 ```
 
-**Get your Groq API Key:**
-1. Visit [https://console.groq.com/keys](https://console.groq.com/keys)
+**Get your OpenRouter API Key:**
+1. Visit [https://openrouter.ai/keys](https://openrouter.ai/keys)
 2. Sign up or log in
 3. Create a new API key
 4. Copy the key and paste it in your `.env` file
@@ -164,7 +164,7 @@ curl -X POST http://localhost:8000/intent -H "Content-Type: application/json" -d
 ap2_demo/
 ├── agents/
 │   ├── shopping_agent.py           # Main orchestrator
-│   ├── merchant_agent.py           # Product search (uses Groq LLM)
+│   ├── merchant_agent.py           # Product search (uses OpenRouter LLM)
 │   ├── credentials_provider_agent.py  # Payment token generation
 │   └── payment_processor_agent.py  # Transaction processing
 ├── mandates.py                     # Data structures for agent communication
@@ -185,10 +185,10 @@ ap2_demo/
 pip install -r requirements.txt
 ```
 
-### Issue: `groq.APIError: Invalid API key`
+### Issue: `AuthenticationError: Invalid API key`
 **Solution:** 
 1. Check your `.env` file exists in the `ap2_demo` directory
-2. Verify your `GROQ_API_KEY` is correct
+2. Verify your `OPENROUTER_API_KEY` is correct
 3. Ensure there are no extra spaces or quotes around the key
 
 ### Issue: `Address already in use` or port 8000 is busy
@@ -202,8 +202,8 @@ pip install -r requirements.txt
 ### Issue: Server starts but `/intent` returns errors
 **Solution:**
 1. Check server logs for error messages
-2. Verify your Groq API key is valid and has credits
-3. Test the API key directly at [https://console.groq.com](https://console.groq.com)
+2. Verify your OpenRouter API key is valid and has credits
+3. Test the API key directly at [https://openrouter.ai](https://openrouter.ai)
 
 ### Issue: `verify_server.py` fails with connection error
 **Solution:** Ensure the server is running in another terminal window before running the verification script.
